@@ -3,7 +3,7 @@ from app import pc_utils
 
 
 def test_cores():
-    assert pc_utils.get_cores_info().is_integer() is True
+    assert isinstance(pc_utils.get_cores_info(), int)
 
 
 @pytest.mark.parametrize("n", range(100))
