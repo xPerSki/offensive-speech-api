@@ -34,4 +34,4 @@ jobs:
         docker build -t offensive-speech-api:latest .
     - name: Test with pytest in Docker
       run: |
-        docker run --rm offensive-speech-api:latest pytest
+        docker run --rm offensive-speech-api:latest pytest tests
