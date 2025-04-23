@@ -1,4 +1,10 @@
-FROM ubuntu:latest
-LABEL authors="kacpe"
+FROM python:3.10-slim
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app-api
+
+COPY app .
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "app/main.py"]
