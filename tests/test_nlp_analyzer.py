@@ -1,6 +1,6 @@
 import pytest
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import nlp_analyzer as analyzer
+import app.nlp_analyzer as analyzer
 
 
 NOT = "Not Offensive"
