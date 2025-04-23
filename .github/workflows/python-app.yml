@@ -32,6 +32,13 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t offensive-speech-api:latest .
-    - name: Test with pytest in Docker
+    - name: Run server in Docker
       run: |
-        docker run --rm offensive-speech-api:latest pytest tests
+        docker run -d --name offensive-speech-api -p 8000:8000 offensive-speech-api:latest
+    - name: Test with pytest
+      run: |
+        docker exec offensive-speech-api pytest tests
+    - name: Stop and remove Docker container
+      run: |
+        docker stop offensive-speech-api
+        docker rm offensive-speech-api
