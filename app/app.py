@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-import nlp_analyzer
+import app.nlp_analyzer as nlp_analyzer
 
 app = FastAPI()
 
