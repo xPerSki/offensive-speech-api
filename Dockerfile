@@ -6,6 +6,8 @@ COPY app ./app
 COPY tests ./tests
 COPY requirements.txt .
 
+RUN cp app/nlp_analyzer.py tests/
+
 RUN pip install --no-cache-dir -r requirements.txt  \
     && pip install --no-cache-dir pytest
 

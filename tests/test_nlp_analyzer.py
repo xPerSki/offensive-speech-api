@@ -1,9 +1,5 @@
 import pytest
-import sys
-import os
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../app')))
 import nlp_analyzer as analyzer
 
 
