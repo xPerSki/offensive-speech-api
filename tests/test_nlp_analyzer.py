@@ -36,10 +36,10 @@ def model_and_tokenizer():
 @pytest.mark.parametrize("text", NOT_LIST)
 def test_not_offensive(model_and_tokenizer, text):
     model, tokenizer = model_and_tokenizer
-    assert analyzer.analyze_text(text, model, tokenizer) == NOT
+    assert analyzer.analyze_text(text, model, tokenizer)["predicted_label"] == NOT
 
 
 @pytest.mark.parametrize("text", OFF_LIST)
 def test_offensive(model_and_tokenizer, text):
     model, tokenizer = model_and_tokenizer
-    assert analyzer.analyze_text(text, model, tokenizer) == OFF
+    assert analyzer.analyze_text(text, model, tokenizer)["predicted_label"] == OFF

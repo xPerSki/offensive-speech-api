@@ -6,15 +6,16 @@ MODEL = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
 TOKENIZER = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 
-def analyze_text(text, model, tokenizer, verbose=False) -> str:
+def analyze_text(text, model, tokenizer, verbose=False) -> dict:
     inputs = tokenizer(text, return_tensors="pt")
     outputs = model(**inputs)
     probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
 
     labels = ["Not Offensive", "Offensive"]
     predicted_label = labels[torch.argmax(probs)]
-    print(f"Predicted label: {predicted_label} [{max(probs[0])*100:.1f}%]") if verbose else None
-    return predicted_label
+    confidence = f"{max(probs[0]*100):.1f}"
+    print(f"Predicted label: {predicted_label} [{confidence}%]") if verbose else None
+    return {"predicted_label": predicted_label, "confidence": confidence}
 
 
 if __name__ == "__main__":

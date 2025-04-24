@@ -18,7 +18,8 @@ def analyze_text(text: str):
     return {
         "results": {
             "text": text,
-            "result": result
+            "result": result["predicted_label"],
+            "confidence": result["confidence"],
         }
     }
 
