@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 import uvicorn
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 from app import nlp_analyzer
 
 app = FastAPI()
@@ -19,7 +23,7 @@ def analyze_text(text: str):
         "results": {
             "text": text,
             "result": result["predicted_label"],
-            "confidence": result["confidence"],
+            "confidence": result["confidence"]
         }
     }
 
