@@ -9,6 +9,11 @@ from app import nlp_analyzer
 app = FastAPI()
 
 
+@app.get("/")
+def default():
+    return "Offensive Speech API - Connected"
+
+
 @app.get("/ping")
 def ping():
     return "pong"
@@ -29,4 +34,4 @@ def analyze_text(text: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=8000, host='0.0.0.0')
+    uvicorn.run(app, port=8000, host='localhost')

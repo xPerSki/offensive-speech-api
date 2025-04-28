@@ -6,7 +6,16 @@ MODEL = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME)
 TOKENIZER = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 
+def cleanup_text(text) -> str:
+    clean_text = text
+    for char in text:
+        if not char.isalpha() and char != ' ':
+            clean_text = clean_text.replace(char, '')
+    return clean_text
+
+
 def analyze_text(text, model, tokenizer, verbose=False) -> dict:
+    text = cleanup_text(text)
     inputs = tokenizer(text, return_tensors="pt")
     outputs = model(**inputs)
     probs = torch.nn.functional.softmax(outputs.logits, dim=-1)

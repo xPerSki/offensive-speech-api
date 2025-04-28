@@ -1,3 +1,5 @@
+from types import NoneType
+
 import psutil as ps
 from psutil import POWER_TIME_UNLIMITED
 import asyncio
@@ -74,5 +76,9 @@ def get_battery_info():
 
 if __name__ == "__main__":
     get_main_disk_info("/", "GB")
-    get_battery_info()
+    try:
+        get_battery_info()
+    except AttributeError:
+        print("- Using power supply")
+
     asyncio.run(cpu_watcher(treshold=60, verbose=True))
