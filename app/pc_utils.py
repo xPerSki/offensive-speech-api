@@ -13,11 +13,11 @@ async def get_cpu_usage(interval: float = DEFAULT_INTERVAL, verbose=False):
         return cpu_usage
 
 
-async def check_cpu_threshold(threshold: float, verbose=False):
+async def check_cpu_threshold(treshold: float, verbose=False):
     while True:
         cpu_usage = await get_cpu_usage(verbose=verbose)
-        if cpu_usage > threshold:
-            print(f"Warning: CPU usage exceeded {threshold}%! Current usage: {cpu_usage}%")
+        if cpu_usage > treshold:
+            print(f"Warning: CPU usage exceeded {treshold}%! Current usage: {cpu_usage}%")
 
 
 async def cpu_watcher(treshold=20, verbose=False):
